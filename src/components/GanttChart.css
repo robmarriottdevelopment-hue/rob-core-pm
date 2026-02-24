@@ -1,0 +1,272 @@
+.gantt-container {
+    display: flex;
+    height: 100%;
+    background-color: var(--bg-primary);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Task List Sidebar */
+.task-sidebar {
+    width: 250px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-secondary);
+    z-index: 20;
+}
+
+.sidebar-column-header {
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 16px 12px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--border);
+}
+
+.task-name-row {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 14px;
+    color: #e0e0e0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.task-name-row:hover {
+    background: var(--bg-tertiary);
+}
+
+.task-name-with-progress {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.progress-badge {
+    font-size: 10px;
+    background: rgba(0, 200, 83, 0.1);
+    color: var(--accent-primary);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* Chart Canvas */
+.chart-canvas-container {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+}
+
+/* Header Sections */
+.timeline-header-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+}
+
+.month-header {
+    display: flex;
+    height: 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-tertiary);
+}
+
+.month-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent-primary);
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.units-header {
+    display: flex;
+    height: 60px;
+}
+
+.timeline-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+    padding-top: 4px;
+}
+
+.unit-top {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.unit-bottom {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.today-text {
+    color: #ff4444 !important;
+}
+
+.chart-canvas {
+    position: relative;
+}
+
+.grid-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+}
+
+.grid-line {
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.03);
+    position: absolute;
+}
+
+/* Today Indicator */
+.today-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #ff4444;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.today-label {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    background-color: #ff4444;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bars-layer {
+    position: relative;
+    z-index: 2;
+}
+
+.task-bar-row {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.task-bar {
+    position: absolute;
+    top: 10px;
+    height: 28px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 200, 83, 0.3);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.task-bar:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(0, 200, 83, 0.2);
+}
+
+.task-bar-progress {
+    height: 100%;
+    background-color: var(--accent-primary);
+    opacity: 0.8;
+    transition: width 0.3s ease-out;
+}
+
+.task-bar-label {
+    position: absolute;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.label-pct {
+    opacity: 0.7;
+    font-size: 9px;
+    margin-left: 6px;
+}
+
+.task-bar.bar-short .task-bar-label {
+    left: calc(100% + 12px);
+    color: var(--text-secondary);
+    text-shadow: none;
+}
+
+.links-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.empty-sidebar-text {
+    padding: 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+}
+
+/* Modal Progress Slider */
+.progress-slider {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-tertiary);
+    border-radius: 3px;
+    appearance: none;
+    outline: none;
+    margin-top: 8px;
+}
+
+.progress-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 200, 83, 0.5);
+}
