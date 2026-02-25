@@ -178,19 +178,22 @@ const GanttChart = ({ viewMode, tasks, onEditTask }) => {
                                 const toX = getTaskPos(new Date(task.start), timelineStart, viewMode, columnWidth);
                                 const toY = idx * ROW_HEIGHT + ROW_HEIGHT / 2;
 
-                                if (toX < fromX) return null;
+                                const isBackwards = toX < fromX;
+                                const strokeColor = isBackwards ? '#ff9800' : 'var(--accent-primary)';
 
-                                const cp1X = fromX + 30;
-                                const cp2X = toX - 30;
+                                // Adjust control points based on direction
+                                const cp1X = isBackwards ? fromX + 15 : fromX + 30;
+                                const cp2X = isBackwards ? toX - 15 : toX - 30;
 
                                 return (
                                     <path
                                         key={`link-${depId}-${task.id}-${viewMode}`}
                                         d={`M ${fromX} ${fromY} C ${cp1X} ${fromY}, ${cp2X} ${toY}, ${toX} ${toY}`}
-                                        stroke="var(--accent-primary)"
+                                        stroke={strokeColor}
                                         strokeWidth="2"
+                                        strokeDasharray={isBackwards ? "4 2" : "none"}
                                         fill="none"
-                                        opacity="0.4"
+                                        opacity={isBackwards ? "0.6" : "0.4"}
                                         markerEnd="url(#arrowhead)"
                                     />
                                 );
