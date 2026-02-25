@@ -69,6 +69,69 @@
   color: var(--accent-primary);
 }
 
+.sidebar-tasks-reorder {
+  padding: 1rem;
+  flex: 1;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+  margin-top: 1rem;
+}
+
+.sidebar-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #666;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.mini-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mini-task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+.reorder-controls {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.reorder-controls button {
+  background: transparent;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  padding: 2px;
+  font-size: 0.6rem;
+  transition: color 0.2s;
+}
+
+.reorder-controls button:hover:not(:disabled) {
+  color: var(--accent-primary);
+}
+
+.reorder-controls button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
 .sidebar-footer {
   padding: 12px;
   border-top: 1px solid var(--border);
