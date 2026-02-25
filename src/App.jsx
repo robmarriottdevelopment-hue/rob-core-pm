@@ -66,6 +66,22 @@ function App() {
     setIsModalOpen(false);
   };
 
+  const handleResetTasks = () => {
+    if (window.confirm('Reset all tasks to the default screenshot sequence? Current changes will be lost.')) {
+      setTasks(INITIAL_TASKS);
+      localStorage.removeItem('robcore-tasks');
+      window.location.reload();
+    }
+  };
+
+  const moveTask = (index, direction) => {
+    const newTasks = [...tasks];
+    const newIndex = direction === 'up' ? index - 1 : index + 1;
+    if (newIndex < 0 || newIndex >= tasks.length) return;
+    [newTasks[index], newTasks[newIndex]] = [newTasks[newIndex], newTasks[index]];
+    setTasks(newTasks);
+  };
+
   const handleMemberClick = (memberId) => {
     const member = TEAM_MEMBERS.find(m => m.id === memberId);
     if (member) {
@@ -89,15 +105,28 @@ function App() {
             <Users size={20} />
             <span>Team Hub</span>
           </button>
-          <button className={`nav-item ${activeTab === 'list' ? 'active' : ''}`} onClick={() => setActiveTab('list')}>
-            <List size={20} />
-            <span>List View</span>
-          </button>
           <button className={`nav-item ${activeTab === 'gantt' ? 'active' : ''}`} onClick={() => setActiveTab('gantt')}>
             <Calendar size={20} />
             <span>Gantt Chart</span>
           </button>
         </nav>
+
+        {activeTab === 'gantt' && currentUser.id === 'all' && (
+          <div className="sidebar-tasks-reorder">
+            <div className="sidebar-label">REORDER TASKS</div>
+            <div className="mini-task-list">
+              {tasks.map((task, index) => (
+                <div key={task.id} className="mini-task-item">
+                  <span className="truncate">{task.name}</span>
+                  <div className="reorder-controls">
+                    <button onClick={() => moveTask(index, 'up')} disabled={index === 0}>▲</button>
+                    <button onClick={() => moveTask(index, 'down')} disabled={index === tasks.length - 1}>▼</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="sidebar-footer">
           <div className="persona-switcher">
@@ -114,9 +143,9 @@ function App() {
               ))}
             </select>
           </div>
-          <button className="nav-item">
+          <button className="nav-item" onClick={handleResetTasks}>
             <Settings size={20} />
-            <span>Settings</span>
+            <span>Reset Data</span>
           </button>
         </div>
       </aside>
