@@ -14,10 +14,18 @@ const TEAM_MEMBERS = [
 ];
 
 const INITIAL_TASKS = [
-  { id: 1, name: 'Apply for business via Gov', start: '2026-02-24', end: '2026-03-15', progress: 10, assignee: 'john', dependencies: [] },
+  { id: 1, name: 'Apply for business via Gov', start: '2026-02-24', end: '2026-03-15', progress: 100, assignee: 'john', dependencies: [] },
   { id: 2, name: 'Apply for DUNS', start: '2026-03-16', end: '2026-03-22', progress: 0, assignee: 'alex', dependencies: [1] },
-  { id: 3, name: 'Re-applyy for GooglePlay', start: '2026-03-23', end: '2026-03-31', progress: 0, assignee: 'alex', dependencies: [2] },
-  { id: 4, name: 'App build - academic assessor', start: '2026-02-17', end: '2026-03-10', progress: 30, assignee: 'sarah', dependencies: [] },
+  { id: 3, name: 'Re-apply for GooglePlay', start: '2026-03-23', end: '2026-03-31', progress: 0, assignee: 'alex', dependencies: [2] },
+  { id: 11, name: 'Deploy App - Academic Assessor', start: '2026-04-01', end: '2026-04-05', progress: 0, assignee: 'alex', dependencies: [3] },
+  { id: 4, name: 'App - academic assessor', start: '2026-02-17', end: '2026-03-10', progress: 87, assignee: 'sarah', dependencies: [] },
+  { id: 5, name: 'App - Dopamine Dungeon', start: '2026-02-24', end: '2026-03-05', progress: 67, assignee: 'sarah', dependencies: [] },
+  { id: 6, name: 'App - Anxiety', start: '2026-03-08', end: '2026-03-20', progress: 0, assignee: 'john', dependencies: [] },
+  { id: 7, name: 'App - 4', start: '2026-03-15', end: '2026-03-25', progress: 0, assignee: 'john', dependencies: [] },
+  { id: 8, name: 'App - 5', start: '2026-03-15', end: '2026-03-25', progress: 0, assignee: 'john', dependencies: [] },
+  { id: 9, name: 'Build website - Programme Development', start: '2026-03-01', end: '2026-03-12', progress: 79, assignee: 'john', dependencies: [] },
+  { id: 10, name: 'Build website - Software Development', start: '2026-03-05', end: '2026-03-15', progress: 0, assignee: 'john', dependencies: [] },
+  { id: 12, name: 'SaaS - LMS', start: '2026-03-15', end: '2026-03-25', progress: 0, assignee: 'john', dependencies: [] },
 ];
 
 function App() {
