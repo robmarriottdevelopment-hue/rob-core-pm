@@ -155,11 +155,11 @@ function App() {
         <header className="header">
           <div className="header-left">
             <div className="header-title-group">
-              <h2 className="project-title">Product Roadmap 2024</h2>
+              <h2 className="project-title">Master Schedule: RobCore 2026</h2>
               <div className="breadcrumb">
                 <span>Strategy</span>
                 <ChevronRight size={14} />
-                <span>Q1 Execution</span>
+                <span>Q1 Delivery</span>
               </div>
             </div>
           </div>
